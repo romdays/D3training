@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>D3 Training List</title>
+</head>
+<body>
+
+</body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+
+	d3.json('./data.json', function(data){
+		var ul = d3.select('body').append('ul');
+		Object.keys(data).forEach(function(key){
+			var childUl = ul.append('li')
+				.html(key);
+			childUl.selectAll('li')
+				.data(data[key])
+				.enter()
+				.append('ul')
+				.append('li')
+				.html(function(d) { return '<a href="' + key + '/' + d + '">' + d + '</a>'});
+		});
+	});
+
+</script>
+</html>
