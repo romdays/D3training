@@ -32,40 +32,73 @@ d3.csv(csvFile, function(error, data){
         .data(dataSet)
 
     barElements.enter()
-        .append("rect")
-        .attr("class", "bar")
-        .attr({
-            width: barWidth,
-            x: function(d, i){
-                return i*(barWidth+barMargin)+offsetX;
-            },
-            height: 0,
-            y: function(d, i){
-                return svgHeight-offsetY;
-            },
-        })
-        .on("mouseover", function(){
-            d3.select(this)
-                .style("fill", "red")
-        })
-        .on("mouseout", function(){
-            d3.select(this)
-                .style("fill", "orange")
-        })
+    .append("rect")
+    .attr("class", "barred")
+    .attr({
+        width: barWidth/2,
+        x: function(d, i){
+            return i*(barWidth+barMargin)+offsetX+barWidth/2;
+        },
+        height: function(d, i){
+            return d;
+        },
+        y: function(d, i){
+            return svgHeight-d-offsetY;
+        },
+    })
+    //barElements.enter()
+    .append("rect")
+    .attr("class", "bar")
+    .attr({
+        width: barWidth/2,
+        x: function(d, i){
+            return i*(barWidth+barMargin)+offsetX;
+        },
+        height: function(d, i){
+            return d;
+        },
+        y: function(d, i){
+            return svgHeight-d-offsetY;
+        },
+    })
 
-    barElements.transition()
-        .duration(1000)
-        .delay(function(d, i){
-            return i*100;
-        })
-        .attr({
-            height: function(d, i){
-                return d;
-            },
-            y: function(d, i){
-                return svgHeight-d-offsetY;
-            }
-        })
+    barElements.exit().remove()
+
+    // barElements.enter()
+    //     .append("rect")
+    //     .attr("class", "bar")
+    //     .attr({
+    //         width: barWidth,
+    //         x: function(d, i){
+    //             return i*(barWidth+barMargin)+offsetX;
+    //         },
+    //         height: 0,
+    //         y: function(d, i){
+    //             return svgHeight-offsetY;
+    //         },
+    //     })
+    //     .on("mouseover", function(){
+    //         d3.select(this)
+    //             .style("fill", "red")
+    //     })
+    //     .on("mouseout", function(){
+    //         d3.select(this)
+    //             .style("fill", "orange")
+    //     })
+
+    // barElements.transition()
+    //     .duration(1000)
+    //     .delay(function(d, i){
+    //         return i*100;
+    //     })
+    //     .attr({
+    //         height: function(d, i){
+    //             return d;
+    //         },
+    //         y: function(d, i){
+    //             return svgHeight-d-offsetY;
+    //         }
+    //     })
 
     textNumElements = d3.select("#myGraph")
         .selectAll("text.barNum")
