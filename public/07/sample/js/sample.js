@@ -67,30 +67,25 @@ d3.csv(csvFile, function(error, data){
             }
         })
 
-    // barElements.enter()
-    // .append("text")
-    // .attr("class", "barNum")
-    // .attr("x", function(d, i){
-    //     return i*(barWidth+barMargin)+10+offsetX;
-    // })
-    // .attr("y", svgHeight - 5-offsetY)
-    // .text(function(d, i){
-    // return d;
-
-    textElements = d3.select("#myGraph")
-        .selectAll("text")
+    textNumElements = d3.select("#myGraph")
+        .selectAll("text.barNum")
         .data(dataSet)
 
     barElements.enter()
-    .append("text")
-    .attr("class", "barNum")
-    .attr("x", function(d, i){
-        return i*(barWidth+barMargin)+10+offsetX;
-    })
-    .attr("y", svgHeight - 5-offsetY)
-    .text(function(d, i){
-        return d;
-    })
+        .append("text")
+        .attr("class", "barNum")
+        .attr("x", function(d, i){
+            return i*(barWidth+barMargin)+10+offsetX;
+        })
+        .attr("y", svgHeight - 5-offsetY)
+        .text(function(d, i){
+            return d;
+        })
+
+    textNumElements
+        .text(function(d, i){
+            return d;
+        })
 
     var yScale = d3.scale.linear()
         .domain([0,dataMax])
@@ -108,7 +103,7 @@ d3.csv(csvFile, function(error, data){
 
     d3.select("#myGraph")
         .append("rect")
-        .attr("class", "batName")
+        .attr("class", "barName")
         .attr("width", 320)
         .attr("height", 1)
         .attr("transform", "translate("+offsetX+","+(svgHeight-offsetY)+")")
@@ -121,6 +116,14 @@ d3.csv(csvFile, function(error, data){
         })
         .attr("y", svgHeight-offsetY+15)
         .text(function(d, i){
+            return labelName[i];
+        })
+        
+    textNameElements = d3.select("#myGraph")
+        .selectAll("text.barName")
+        .data(dataSet)
+
+    textNameElements.text(function(d, i){
             return labelName[i];
         })
     })
