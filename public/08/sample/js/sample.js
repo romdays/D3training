@@ -4,7 +4,7 @@ var dataSet = [50,30, 12, 5, 3]
 
 var pie = d3.layout.pie()
 
-var arc = d3.svg.arc().innerRadius(0).outRadius(100);
+var arc = d3.svg.arc().innerRadius(0).outerRadius(100);
 
 var pieElements = d3.select("#myGraph")
     .selectAll("path")
