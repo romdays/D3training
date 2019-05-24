@@ -7,11 +7,19 @@
         <style>
             svg{width: 320px; height: 240px; border: 1px solid black}
             .pie{fill: orange; stroke: black}
+            .total{font-size: 9pt; text-anchor: middle}
+            .pieNum{font-size: 10pt; text-anchor: middle}
         </style>
     </head>
     <body>
         <h1>円グラフを表示</h1>
         <svg id="myGraph"></svg>
+        <form>
+            <select id="year">
+                <option value="2008">2008年</option>
+                <option value="2009">2009年</option>
+            </select>
+        </form>
         <script src="js/sample.js"></script>
     </body>
 </html>
