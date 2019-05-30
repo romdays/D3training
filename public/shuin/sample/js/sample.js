@@ -103,10 +103,10 @@ function main(dataSet, headers){
             )
     }
 
-    function drawGraph(party, ID){
-        var tooltip = d3.select("body")
-            .append("div")
-            .attr("class", "tip")
+    function drawGraph(partyName, nameScope){
+        // var tooltip = d3.select("body")
+        //     .append("div")
+        //     .attr("class", "tip")
 
         var line = d3.svg.line()
             .x(function(d, i){
@@ -115,13 +115,15 @@ function main(dataSet, headers){
             .y(function(d){
                 return yScale(d)+offsetY;
             })
-            console.log(party)
+
         d3.select("#myGraph")
             .append("path")
-            .attr("class", "line")
-            .attr("stroke", colors[party])
-            .attr("d", line(dataSet[party]))
-            .attr("id", party+"."+ID)
+            .attr("class", nameScope)
+            .style("fill", "none")
+            .style("stroke-width", 3)
+            .attr("stroke", colors[partyName])
+            .attr("d", line(dataSet[partyName]))
+            .attr("id", partyName)
             // .on("mouseover", function(){
             //     var fontSize = 16;
             //     var rectSize = fontSize*1.7;
@@ -149,6 +151,8 @@ function main(dataSet, headers){
         var rectElement;
         var rectElements = d3.select("#myGraph")
                 .append("g")
+                .selectAll("text")
+
         
         for (var i=1; i<headers.length; i++){
             rectElement = rectElements.append("g")
@@ -195,36 +199,32 @@ function main(dataSet, headers){
 
         rectElements.selectAll("#partyBox")
             .on("mouseover", function(){
-                var id = d3.select(this)
+                var partyName = d3.select(this)
                     .select("rect")
                     .style("fill", "#eee")
                     .attr("id")
 
-                drawGraph(id, "highlight")
-                
                 d3.select("#myGraph")
                     .selectAll(".origin")
                     .data(headers.slice(1))
                     .style("stroke", function(d){
-                        // if (id==d){
-                        //     return null;
-                        // }else{
-                        //     return "#ddd";
-                        // }
                         return "#ddd";
                     })
+
+                drawGraph(partyName, "highlight")
+                
             })
             .on("mouseout", function(){
-                var id = d3.select(this)
+                var partyName = d3.select(this)
                     .select("rect")
                     .style("fill", "none")
                     .attr("id")
 
-                d3.select(".highlight")
+                d3.selectAll(".highlight")
                     .remove()
 
-                var lineElements = d3.selectAll("#myGraph")
-                    .selectAll(".line")
+                var lineElements = d3.select("#myGraph")
+                    .selectAll("#origin")
                     .data(headers.slice(1))
 
                     lineElements.style("stroke", function(d){
