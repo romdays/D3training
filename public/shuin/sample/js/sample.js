@@ -223,7 +223,7 @@ function main(dataSet, headers){
                     .remove()
 
                 var lineElements = d3.select("#myGraph")
-                    .selectAll("#origin")
+                    .selectAll(".origin")
                     .data(headers.slice(1))
 
                     lineElements.style("stroke", function(d){
