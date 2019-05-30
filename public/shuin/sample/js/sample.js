@@ -151,7 +151,6 @@ function main(dataSet, headers){
         var rectElement;
         var rectElements = d3.select("#myGraph")
                 .append("g")
-                .selectAll("text")
 
         
         for (var i=1; i<headers.length; i++){
