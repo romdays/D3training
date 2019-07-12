@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://unpkg.com/vue"></script>
+    <title>Hello, Vue!</title>
+</head>
+<body>
+    <h1>To DO List</h1>
+    <div id="app">
+        <form v-on:submit.prevent="sendTodo">
+            <input type="text" v-model="todo">
+            <input type="submit" val="add">
+        </form>
+        <ul v-for="item in list">
+            <li v-on:click="doneTodo(item)">
+                <span>
+                    status: {{item.status}}
+                </span>
+                <span v-if="item.status=='done'">
+                    {{item.text}}
+                </span>
+                <span v-else>
+                    {{item.text}}
+                </span>
+            </li>
+        </ul>
+    </div>
+
+    <script src="js/sample.js"></script>
+</body>
+</html>

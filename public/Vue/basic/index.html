@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://unpkg.com/vue"></script>
+    <title>Hello, Vue!</title>
+</head>
+<body>
+    <h1>Hello Vue!!</h1>
+    <div id="app">
+        count:{{count}}
+
+        <ul v-for="item in array">
+            <li>
+                {{item}}
+            </li>
+        </ul>
+
+        <div v-on:click="showalert">alert</div>
+        <!-- <div @click="alert()">alert</div> -->
+        <div @click="count++">count++</div>
+
+        <input v-model="text">
+        <p>{{text}}</p>
+
+        <textarea v-model="text"></textarea>
+        <p>{{text}}</p>
+
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+
+        <br>
+        <input type="checkbox" id="kongo" value="Kongo" v-model="checkedNames">
+        <label for="kongo">Kongo</label>
+        <input type="checkbox" id="hiei" value="Hiei" v-model="checkedNames">
+        <label for="hiei">Hiei</label>
+        <input type="checkbox" id="haruna" value="Haruna" v-model="checkedNames">
+        <label for="haruna">Haruna</label>
+        <input type="checkbox" id="kirishima" value="Kirishima" v-model="checkedNames">
+        <label for="kirishima">Kirishima</label>
+        <br>
+        <span>{{checkedNames}}</span>
+ 
+        <br>
+        <input type="radio" id="fm" value="FM" v-model="modulation">
+        <label for="fm">FM</label>
+        <input type="radio" id="am" value="AM" v-model="modulation">
+        <label for="am">AM</label>
+        <br>
+        <span>Modulation: {{modulation}}</span>
+
+        <br>
+        <select v-model="hisyo">
+            <option disabled value="">秘書艦を選択してください</option>
+            <option>金剛</option>
+            <option>比叡</option>
+            <option>榛名</option>
+            <option>霧島</option>
+        </select>
+        <span>秘書艦: {{hisyo}}</span>
+
+        <br>
+        <select multiple v-model="kantai">
+            <option disabled value="">艦隊を組んでください</option>
+            <option>金剛</option>
+            <option>比叡</option>
+            <option>榛名</option>
+            <option>霧島</option>
+        </select>
+        <span>艦隊: {{kantai}}</span>
+
+        <h2>奇数番目の艦娘</h2>
+        <ul v-for="who of odd">
+            <li>{{who}}</li>
+        </ul>
+        <ul v-for="whod of oddd">
+            <li>{{whod}}</li>
+        </ul>
+        
+    </div>
+
+    <div id="buttonComponent">
+   <button-counter></button-counter>
+    </div>
+    <script src="js/sample.js"></script>
+</body>
+</html>

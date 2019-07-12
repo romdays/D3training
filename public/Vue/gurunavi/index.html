@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue-router"></script>
+    
+    <title>ぐるなVue</title>
+</head>
+<body>
+    <h1>ぐるなびAPI - 店舗検索</h1>
+    <div id="app">
+        <search-box v-model="searchText" @get-info="getInfo"></search-box>
+        <div v-if="info">
+            <!-- <div v-for="i in info">{{i}}</div> -->
+            <search-result v-for="item in info" :key="item.id" :item="item"></search-result>
+        </div>
+    </div>
+    <script src="js/sample.js"></script>
+</body>
+</html>

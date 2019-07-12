@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://unpkg.com/vue"></script>
+    <title>Hello, Vue!</title>
+</head>
+<body>
+    <h1>Component Demo</h1>
+    <div id="component-demo">
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+
+        
+        <div :style="{ fontSize: postFontSize + 'em' }">
+            <blog-post
+                v-for="post in posts"
+                v-bind:key="post.id"
+                v-bind:post="post"
+                v-on:enlarge-text="postFontSize += 0.1"
+            ></blog-post>
+        </div>
+
+        <!-- <custom-input 
+            :value="searchText"
+            @input="searchText=$event"
+        ></custom-input> -->
+        <custom-input v-model="searchText"></custom-input>
+
+        <alert-box>
+                Something bad happened.
+        </alert-box>
+
+        <base-checkbox v-model="lovingVue"></base-checkbox>
+
+        <ul>
+            <li  v-for="(value, name, index) in object">{{ name }}: {{ value }}</li>
+        </ul>
+        <li v-for="item in items" :key="item.id">
+            {{item.id}}: {{item.message}}
+        </li>
+
+    </div>
+    <script src="js/sample.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router"></script>
+    
+    <title>Hello, Vue!</title>
+</head>
+<body>
+    <h1>Single Page Application</h1>
+    <div id="app">
+            <!-- リンク先を `to` プロパティに指定します -->
+            <!-- デフォルトで <router-link> は `<a>` タグとしてレンダリングされます -->
+            <router-link to="/a">トップページ</router-link>
+            <router-link to="/b">ユーザー一覧ページ</router-link>
+            <router-link :to="{ name: 'user', params: { userId: 123 }}">ユーザー詳細ページ</router-link>
+            <router-view></router-view>
+    </div>
+    <script src="js/sample.js"></script>
+</body>
+</html>
